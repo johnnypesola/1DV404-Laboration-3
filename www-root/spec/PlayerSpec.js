@@ -1,10 +1,14 @@
 describe("Player", function() {
   var player;
   var song;
+  var data;
 
   beforeEach(function() {
     player = new Player();
     song = new Song();
+
+    data = getJSONFixture('jsontest.json');
+
   });
 
   it("should be able to play a Song", function() {

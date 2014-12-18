@@ -82,6 +82,7 @@
 	            set: function(value){
 	                if(value !== null && typeof value === "boolean"){
 	                    _isIndividual = value;
+	                    //console.log(value + " " + isIndividual);
 	                }
 	                else{
 	                    throw new Error("ERROR: isIndividual must be a boolean");
@@ -154,20 +155,20 @@
     		for(i = 0; i < this.judgesArray.length; i++){
 
     			// Try to send email to judge.
-				if(this.judgesArray[i].email){
-					this.sendEmail(this.judgesArray[i].email);
+				if(this.judgesArray[i].sms){
+					this.sendSms(this.judgesArray[i].sms);
 				}
 				// Try to send sms to judge.
-				else if(this.judgesArray[i].sms){
-					this.sendSms(this.judgesArray[i].sms);
+				else if(this.judgesArray[i].email){
+					this.sendEmail(this.judgesArray[i].email);
 				}
     		}
     	},
 
-    	sendEmail: function(emailAdress){ // Not implemented
-			console.log("Email sent to: " + emailAdress);
+    	sendEmail: function(emailAddress){ // Not implemented
+			//console.log("Email sent to: " + emailAddress);
     	},
 		sendSms: function(phoneNumber){ // Not implemented
-			console.log("SMS sent to: " + phoneNumber);
+			//console.log("SMS sent to: " + phoneNumber);
     	}
     };

@@ -11,4 +11,6 @@
 		myEvent.addJudge({fullName: "Jens Persson", email: "jens@persson.se"});
 
 		myCompetition.addEvent(myEvent);
+
+		console.log(typeof "fisk23" === "boolean")
 	}

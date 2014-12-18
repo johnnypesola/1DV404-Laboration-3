@@ -15,6 +15,13 @@ describe("Competition", function() {
 		expect(competition.endTime.getTime()).toEqual(goodValues.construct.endTime);
 	});
 
+	it("should throw an error when created with bad constructor endTime argument", function() {
+		expect(function(){
+							new Competition(goodValues.construct.startTime, badValues.string1)}).toThrow(
+								new Error("ERROR: the endTime argument must be a unix timestamp (but in miliseconds)"
+							)
+		);
+	});
 
 	it("should throw an error when created with bad constructor startTime argument", function() {
 		expect(function(){
@@ -24,12 +31,4 @@ describe("Competition", function() {
 		);
 	});
 
-
-	it("should throw an error when created with bad constructor endTime argument", function() {
-		expect(function(){
-							new Competition(goodValues.construct.startTime, badValues.string1)}).toThrow(
-								new Error("ERROR: the endTime argument must be a unix timestamp (but in miliseconds)"
-							)
-		);
-	});
 });

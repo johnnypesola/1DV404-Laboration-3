@@ -15,7 +15,7 @@ describe("Event", function() {
 							goodValues.construct.participantsGender,
 							goodValues.construct.isIndividual,
 							goodValues.construct.isAllRound,
-							goodValues.construct.judgesArray
+							goodValues.construct.judgesArray1
 							);
 
 		// Check if properties for match with constructor data.
@@ -26,7 +26,7 @@ describe("Event", function() {
 		expect(myEvent.participantsGender).toEqual(goodValues.construct.participantsGender);
 		expect(myEvent.isIndividual).toEqual(goodValues.construct.isIndividual);
 		expect(myEvent.isAllRound).toEqual(goodValues.construct.isAllRound);
-		expect(myEvent.judgesArray).toEqual(goodValues.construct.judgesArray);
+		expect(myEvent.judgesArray).toEqual(goodValues.construct.judgesArray1);
 	});
 
 
@@ -54,7 +54,7 @@ describe("Event", function() {
 		expect(function(){
 							new Event(goodValues.construct.startTime,
 									  goodValues.construct.endTime,
-									  badValues.number1
+									  badValues.int1
 									  )
 		}).toThrow(
 				new Error("ERROR: gymnasticsType must be a string")
@@ -66,7 +66,7 @@ describe("Event", function() {
 							new Event(goodValues.construct.startTime,
 									  goodValues.construct.endTime,
 									  goodValues.construct.gymnasticsType,
-									  badValues.number1
+									  badValues.boolean1
 									  )
 		}).toThrow(
 				new Error("ERROR: participantsType must be a string")
@@ -79,7 +79,7 @@ describe("Event", function() {
 									  goodValues.construct.endTime,
 									  goodValues.construct.gymnasticsType,
 									  goodValues.construct.participantsType,
-									  badValues.number1
+									  badValues.float1
 									  )
 		}).toThrow(
 				new Error("ERROR: participantsGender must be a string")
@@ -137,9 +137,21 @@ describe("Event", function() {
 		myEvent = new Event(goodValues.construct.startTime, goodValues.construct.endTime);
 
 		// Add Judge
-		myEvent.addJudge(goodValues.construct.judgesArray);
+		myEvent.addJudge(goodValues.construct.judgesArray1[0]);
 
-		expect(myEvent.judgesArray).toEqual(goodValues.construct.judgesArray1)
+		expect(myEvent.judgesArray[0]).toEqual(goodValues.construct.judgesArray1[0]);
+		
+	});
+
+	it("should throw an error after using 'addJudge' with faulty argument.", function() {
+		myEvent = new Event(goodValues.construct.startTime, goodValues.construct.endTime);
+
+		// Add Judge
+		expect(function(){
+							myEvent.addJudge(badValues.judgesArray1[0])
+		}).toThrow(
+				new Error("addJudge method argument object must contain the properties: 'fullName' and ('email' or 'sms')")
+		);
 		
 	});
 
